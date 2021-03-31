@@ -1,32 +1,54 @@
-Forsaken-Mail
-==============
-A self-hosted disposable mail service.
+https://github.com/denghongcai/forsaken-mail
 
-[Online Demo](http://disposable.dhc-app.com)
+================
 
-### Installation
-
-#### Setting up your DNS correctly
-
-In order to receive emails, your smtp server address should be made available somewhere. Two records should be added to your DNS records. Let us pretend that we want to receive emails at ```*@subdomain.domain.com```:
-* First an MX record: ```subdomain.domain.com MX 10 mxsubdomain.domain.com```. This means that the mail server for addresses like ```*@subdomain.domain.com``` will be ```mxsubdomain.domain.com```.
-* Then an A record: ```mxsubdomain.domain.com A the.ip.address.of.your.mailin.server```. This tells at which ip address the mail server can be found.
-
-You can use an [smtp server tester](http://mxtoolbox.com/diagnostic.aspx) to verify that everything is correct.
-
-#### Let's Go
-general way:
+卸载 nodejs
 ```
-npm install && npm start
+apt remove nodejs npm
 ```
-if you want to run this inside a docker container
+安装 nodejs
+```
+apt install nodejs npm
+```
+查看25端口占用
+```
+lsof -i:25
+```
+
+
+注意要把源码放在非wwwroot目录，避免权限和用户问题。
+
+安装
+```
+cd 到目录
+
+npm install
+```
+启动
+```
+npm start
+```
+
+生成docker
 ```
 docker build -t denghongcai/forsaken-mail .
+```
+
+运行docker
+```
 docker run --name forsaken-mail -d -p 25:25 -p 3000:3000 denghongcai/forsaken-mail
 ```
-Open your browser and type in
+
+
+
+访问地址：
 ```
 http://localhost:3000
 ```
 
-Enjoy!
+
+
+
+
+
+
