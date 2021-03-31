@@ -12,8 +12,8 @@ $(function(){
   $customShortId = $('#customShortid');
   $shortId = $('#shortid');
   $customTheme = 'check';
-  $placeholder_old = '请等待分配邮箱';
-  $placeholder_new = '请输入 “邮箱编号”';
+  $placeholder_old = '请等待分配临时邮箱';
+  $placeholder_new = '请输入不带后缀邮箱账号';
   $customShortId.on('click',function() {
     var self = $(this);
     var editEnable = true;
@@ -29,7 +29,7 @@ $(function(){
       self.toggleClass('edit');
       $shortId.prop('placeholder',$placeholder_old);
       $mailUser = $shortId.val();
-      var mailaddress = '正在分配邮箱..';
+      var mailaddress = $mailUser + '@' + location.hostname;
       setMailAddress($mailUser);
       $shortId.val(mailaddress);
       window.location.reload();
@@ -56,8 +56,7 @@ $(function(){
   var setMailAddress = function(id) {
     localStorage.setItem('shortid', id);
     var mailaddress = id + '@' + location.hostname;
-    var mailbiaohao = '当前编号: ' + id;
-    $('#shortid').val(mailbiaohao).parent().siblings('button').find('.mail').attr('data-clipboard-text', mailaddress);
+    $('#shortid').val(mailaddress).parent().siblings('button').find('.mail').attr('data-clipboard-text', mailaddress);
   };
 
   $('#refreshShortid').click(function() {
@@ -68,7 +67,7 @@ $(function(){
     if(('localStorage' in window)) {
       var shortid = localStorage.getItem('shortid');
       if(!shortid) {
-        socket.emit('set shortid', 'admin');
+        socket.emit('request shortid', true);
       }
       else {
         socket.emit('set shortid', shortid);
