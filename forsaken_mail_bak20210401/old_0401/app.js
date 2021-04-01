@@ -95,7 +95,9 @@ $(function(){
     }
     $tr = $('<tr>').data('mail', mail);
     $tr
-      .append($('<td>').text(mail.headers.subject || '无主题'));
+      .append($('<td>').text(mail.headers.from))
+      .append($('<td>').text(mail.headers.subject || '无主题'))
+      .append($('<td>').text((new Date(mail.headers.date)).toLocaleTimeString()));
     $maillist.prepend($tr);
   });
 });
