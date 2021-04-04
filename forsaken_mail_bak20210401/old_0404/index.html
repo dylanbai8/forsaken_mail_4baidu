@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>百度网盘-登陆验证-密保邮箱</title>
+  <title>百度网盘-邮箱验证码</title>
   <link rel="shortcut icon" href="https://pan.baidu.com/static/images/favicon.ico"/>
   <link rel="bookmark" href="https://pan.baidu.com/static/images/favicon.ico"/>
   <link href="https://lib.baomitu.com/semantic-ui/2.1.7/semantic.min.css" rel="stylesheet">
@@ -14,8 +14,8 @@
 <body>
 <div class="ui fixed borderless menu">
   <div class="ui text container" style="max-width: 100% !important;">
-    <div href="#" style="padding-left:0.7em;height:2em;line-height:2.3em;font-weight:bold;">
-      百度网盘→登陆验证→密保邮箱
+    <div href="#" style="padding-left:0.6em;height:2em;line-height:2.3em;font-weight:bold;">
+      百度网盘-邮箱验证码
     </div>
   </div>
 </div>
@@ -28,7 +28,7 @@
         <i class="mail icon copyable"></i>
       </button>
       <div class="ui icon input">
-        <input id="shortid" style="margin-left:0.5em" type="text" placeholder="请填写 “取件码”" disabled>
+        <input id="shortid" style="margin-left:0.5em" type="text" placeholder="请输入 “邮箱编号”" disabled>
         <i id="refreshShortid"></i>
       </div>
       <i id="customShortid" style="margin-left:0.5em" class="circular edit link icon"></i>
@@ -40,7 +40,7 @@
         <table class="ui celled selectable table">
           <thead>
           <tr>
-            <th>邮件列表 (请等待来信.. )</th>
+            <th>邮件列表 (请等待来信..)</th>
           </tr>
           </thead>
           <tbody id="maillist">
@@ -50,15 +50,14 @@
     </div>
     <div class="row">
       <div class="column">
-        <div class="ui card" id="mailcard" style="overflow:hidden">
+        <div class="ui card" id="mailcard">
           <div class="content">
-            <div class="header">如何接收验证码邮件？</div>
+            <i class="code icon right floated"></i>
+            <div class="header">如何接收邮箱 验证码？</div>
           </div>
           <div class="content">
-            <p>点击上方 → 编辑图标 → 填写“取件码” → 点击对号图标确认，返回网盘发送验证码，等待邮件。</p>
-            <p>注意：“取件码”不是邮箱 也不是密码，不包含 @符号和邮箱后缀。正确示例：888888</p>
-            <p><b>注意：1.如长时间收不到邮件，请1分钟后刷新本页，返回网盘重新发送验证码。2.发密保邮箱，不要发密保手机，只能收邮件不能收短信。</b></p>
-            <p>邮箱5分钟自动退出，收件需重新填写取件码。</p>
+            <p>点击上方 → 编辑图标 → 输入“邮箱编号” → 点击对号图标确认，返回网盘发送验证码，等待邮件。</p>
+            <p>注意：邮箱编号 不包含 @符号和邮箱后缀。示例：888888</p>
           </div>
         </div>
       </div>
@@ -78,23 +77,4 @@
 <script src="https://lib.baomitu.com/clipboard.js/1.5.5/clipboard.min.js"></script>
 <script src="/js/app.js"></script>
 <script src="/js/prism.js"></script>
-<script>setInterval(function(){localStorage.clear();window.location.reload();},300000);</script>
-<script>
-function count() {
-    if(window.localStorage) {
-        if(window.localStorage.getItem("count")) {
-            var c = parseInt(window.localStorage.getItem("count"));
-            window.localStorage.setItem("count",c+1);
-            console.log(parseInt(window.localStorage.getItem("count")));
-        } else {
-            window.localStorage.setItem("count",0);
-            console.log(0);
-        }
-    }
-}
-count();
-var c = parseInt(window.localStorage.getItem("count"));
-var d = 10;
-if (c>d) {localStorage.removeItem('shortid');alert('警告：封禁10分钟，请勿频繁刷新！');};
-</script>
 </html>

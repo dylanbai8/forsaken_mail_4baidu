@@ -13,7 +13,7 @@ $(function(){
   $shortId = $('#shortid');
   $customTheme = 'check';
   $placeholder_old = '请等待分配邮箱';
-  $placeholder_new = '请填写 “取件码”';
+  $placeholder_new = '请输入 “邮箱编号”';
   $customShortId.on('click',function() {
     var self = $(this);
     var editEnable = true;
@@ -33,11 +33,10 @@ $(function(){
       setMailAddress($mailUser);
       $shortId.val(mailaddress);
       window.location.reload();
-      alert("重要警告：\n1.只能收邮件，不能收短信！\n2.看教程操作，楞搞会封号！");
     }
   });
-
-
+  
+  
   $maillist = $('#maillist');
 
   $maillist.on('click', 'tr', function() {
@@ -57,7 +56,7 @@ $(function(){
   var setMailAddress = function(id) {
     localStorage.setItem('shortid', id);
     var mailaddress = id + '@' + location.hostname;
-    var mailbiaohao = '当前取件码: ' + id;
+    var mailbiaohao = '当前编号: ' + id;
     $('#shortid').val(mailbiaohao).parent().siblings('button').find('.mail').attr('data-clipboard-text', mailaddress);
   };
 
