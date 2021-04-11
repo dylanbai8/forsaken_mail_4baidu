@@ -80,6 +80,19 @@
 <script src="/js/prism.js"></script>
 <script>setInterval(function(){localStorage.clear();window.location.reload();},300000);</script>
 <script>
+function time() {
+    var time_new = Date.parse(new Date());
+    if(window.localStorage) {
+        if(window.localStorage.getItem("time_old")) {
+            var time_old = parseInt(window.localStorage.getItem("time_old"));
+            var time_pass = time_new - time_old;
+            if (time_pass>600000) {localStorage.clear();}
+        } else {
+            window.localStorage.setItem("time_old",time_new);
+        }
+            window.localStorage.setItem("time_old",time_new);
+    }
+}
 function count() {
     if(window.localStorage) {
         if(window.localStorage.getItem("count")) {
@@ -92,6 +105,7 @@ function count() {
         }
     }
 }
+time();
 count();
 var c = parseInt(window.localStorage.getItem("count"));
 var d = 10;
